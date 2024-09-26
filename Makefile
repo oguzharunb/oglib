@@ -5,7 +5,8 @@ ARCH = ar
 SRC =	og_memset.c \
 	og_bzero.c \
 	og_read.c \
- 	og_write.c
+ 	og_memcpy.c \
+	og_write.c
 
 OBJ = $(SRC:%.c=%.o)
 
