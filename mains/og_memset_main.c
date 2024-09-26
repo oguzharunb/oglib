@@ -1,4 +1,4 @@
-#include "oglib.h"
+#include "../oglib.h"
 
 #include <stdio.h>
 int	main(void)

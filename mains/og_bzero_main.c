@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "oglib.h"
+#include "../oglib.h"
 
 int	main(void)
 {

@@ -1,4 +1,4 @@
-#include "oglib.h"
+#include "../oglib.h"
 #define BUF_SIZE 32
 
 int	main(void)
