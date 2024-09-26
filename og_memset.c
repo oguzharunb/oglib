@@ -1,4 +1,4 @@
-#include "libft.h"
+#include "oglib.h"
 
 void	*og_memset(void *s, int c, size_t n)
 {

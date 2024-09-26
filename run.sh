@@ -8,7 +8,7 @@ if [ -z "$1" ]; then
 fi
 
 # Compile the files
-gcc -Wall -Werror -Wextra "$1.c" "$1"_main.c -o "exec"
+gcc -Wall -Werror -Wextra -o exec ./mains/"$1"_main.c oglib.a
 
 # Run the executable
 ./exec
