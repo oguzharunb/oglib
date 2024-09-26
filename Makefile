@@ -4,7 +4,7 @@ NAME = oglib.a
 HEADER = oglib.h
 HEADER_PROT = prototype.h
 ARCH = ar
-FILENAME_SCRAPER = ./setup.sh
+FILENAME_SCRAPER = ./scrape_fnames.sh
 PROTOTYPE_PLACER = ./set_prototypes.sh
 SRC := $(shell $(FILENAME_SCRAPER)) #finds the existing files 
 
@@ -28,6 +28,7 @@ clean:
 
 fclean: clean
 	rm -rf $(NAME)
+	rm -rf $(HEADER)
 
 re: fclean all
 
