@@ -6,6 +6,8 @@
 
 # put a line starts with //prototypes so script could work properly
 function_types='^\(void\|int\|char\|size_t\)' 
-prototypes=$(echo hello wrold) # | sed 's/$/;/') #filenames should be given as parameters
+header=$1
+shift
+prototypes=$(grep -h '^\(void\|int\|char\|size_t\)'  "$@" | sed 's/$/;/') #filenames should be given as parameters
 echo ${prototypes}
-perl -pi -e 's|//prototypes|'"$prototypes"'|' $1 #header name should be given as parameter
+perl -pi -e 's|//prototypes|'"$prototypes"'|' $header #header name should be given as parameter
