@@ -2,6 +2,7 @@ GCC = cc
 FLAGS = -Wall -Werror -Wextra
 NAME = oglib.a
 HEADER = oglib.h
+HEADER_PROT = prototype.h
 ARCH = ar
 FILENAME_SCRAPER = ./setup.sh
 PROTOTYPE_PLACER = ./set_prototypes.sh
@@ -15,12 +16,12 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	ar rcs $(NAME) $(OBJ)
 
-$(OBJ): $(SRC) $(HEADER)
-	cp $(HEADER) temp_$(HEADER)
-	$(PROTOTYPE_PLACER) $(HEADER) $(SRC)
+$(OBJ): $(HEADER)
 	$(GCC) $(FLAGS) -c $(SRC)
-	mv temp_$(HEADER) $(HEADER)
-	rm temp_$(HEADER)
+
+$(HEADER): $(SRC)
+	cp $(HEADER_PROT) $(HEADER)
+	$(PROTOTYPE_PLACER) $(HEADER) $(SRC)
 
 clean:
 	rm -rf $(OBJ)
