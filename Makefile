@@ -1,12 +1,12 @@
 GCC = cc
 FLAGS = -Wall -Werror -Wextra
 NAME = oglib.a
+HEADER = oglib.h
 ARCH = ar
-SRC =	og_memset.c \
-	og_bzero.c \
-	og_read.c \
- 	og_memcpy.c \
-	og_write.c
+FILENAME_SCRAPER = ./setup.sh
+PROTOTYPE_PLACER = ./set_prototypes.sh
+SRC := $(shell $(FILENAME_SCRAPER)) #finds the existing files 
+
 
 OBJ = $(SRC:%.c=%.o)
 
@@ -15,8 +15,12 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	ar rcs $(NAME) $(OBJ)
 
-$(OBJ): $(SRC)
+$(OBJ): $(SRC) $(HEADER)
+	cp $(HEADER) temp_$(HEADER)
+	$(PROTOTYPE_PLACER) $(HEADER) $(SRC)
 	$(GCC) $(FLAGS) -c $(SRC)
+	mv temp_$(HEADER) $(HEADER)
+	rm temp_$(HEADER)
 
 clean:
 	rm -rf $(OBJ)
