@@ -4,7 +4,14 @@
 
 config_file=config.json
 lib_name=$(jq -r '.lib_name' "$config_file")
+header_name=$(jq -r '.header_name' "$config_file")
 prefix=$(jq -r '.prefix' "$config_file")
+
+if [ ! -f "${header_name}" ]; then
+    echo "Error: ${header_name} not found."
+    echo "Please build the project with 'make'."
+    exit 1
+fi
 
 if [ -z "$1" ]; then
     echo "Error: No argument provided. Please provide the base function name."
