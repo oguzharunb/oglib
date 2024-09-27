@@ -1,14 +1,19 @@
 #!/bin/bash
 
 # Check if an argument is provided
+
+config_file=config.json
+lib_name=$(jq -r '.lib_name' "$config_file")
+prefix=$(jq -r '.prefix' "$config_file")
+
 if [ -z "$1" ]; then
     echo "Error: No argument provided. Please provide the base function name."
-    echo "Example: ./run.sh og_memset"
+    echo "Example: ./run.sh ${prefix}memset"
     exit 1
 fi
 
 # Extract function name by removing 'og_' prefix
-BASE_FUNCTION_NAME=$(echo "$1" | sed 's/^og_//')
+BASE_FUNCTION_NAME=$(echo "$1" | sed "s/^${prefix}//")
 
 # Paths for original and modified files
 MAIN_FILE_ORIG="./mains/${1}_main.c"
@@ -21,26 +26,26 @@ if [ ! -f "$MAIN_FILE_ORIG" ]; then
 fi
 
 # Create the modified main by replacing 'og_{function_name}' with '{function_name}'
-sed "s/og_$BASE_FUNCTION_NAME/$BASE_FUNCTION_NAME/g" "$MAIN_FILE_ORIG" > "$MAIN_FILE_MODIFIED"
+sed "s/$prefix$BASE_FUNCTION_NAME/$BASE_FUNCTION_NAME/g" "$MAIN_FILE_ORIG" > "$MAIN_FILE_MODIFIED"
 
 # Compile the original function test
-gcc -Wall -Werror -Wextra -o exec_orig "$MAIN_FILE_ORIG" oglib.a
+gcc -Wall -Werror -Wextra -o exec_orig "$MAIN_FILE_ORIG" ${lib_name} 
 if [ $? -ne 0 ]; then
     echo "Error: Compilation of $1 failed."
     exit 1
 fi
 
 # Compile the modified function test
-gcc -Wall -Werror -Wextra -o exec_mod "$MAIN_FILE_MODIFIED" oglib.a
+gcc -Wall -Werror -Wextra -o exec_mod "$MAIN_FILE_MODIFIED" ${lib_name} 
 if [ $? -ne 0 ]; then
     echo "Error: Compilation of $BASE_FUNCTION_NAME failed."
     exit 1
 fi
 
 # Run both executables and save their outputs
-./exec_orig > output_orig.txt
 echo ------------------------
-echo "og_$BASE_FUNCTION_NAME's output "
+./exec_orig > output_orig.txt
+echo "$prefix$BASE_FUNCTION_NAME's output "
 cat output_orig.txt
 echo ------------------------
 ./exec_mod > output_mod.txt
