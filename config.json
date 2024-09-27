@@ -1,0 +1,13 @@
+{
+	"lib_name": "oglib.a",
+	"header_name":"oglib.h",
+	"prefix": "og_",
+	"function_types":[
+		"void",
+		"int",
+		"size_t",
+		"char",
+		"double",
+		"unsigned char"
+	]
+}
