@@ -6,7 +6,7 @@ int main() {
 	char dest[20];  // Make sure dest has enough space for 'src'
 
 	
-	void *result = og_memccpy(dest, src, ',', strlen(src));
+	void *result = og_memccpy(dest, src, ',', sizeof(src));
 
 	if (result)
 	{
