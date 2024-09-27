@@ -1,7 +1,8 @@
+CONFIG = config.json
 GCC = cc
 FLAGS = -Wall -Werror -Wextra
-NAME = oglib.a
-HEADER = oglib.h
+NAME = $(shell jq -r '.lib_name' '${CONFIG}')
+HEADER = $(shell jq -r '.header_name' '${CONFIG}') 
 HEADER_PROT = prototype.h
 ARCH = ar
 FILENAME_SCRAPER = ./scrape_fnames.sh
