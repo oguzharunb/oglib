@@ -47,7 +47,6 @@ echo ------------------------
 echo "## $prefix$BASE_FUNCTION_NAME's output ##"
 cat output_orig.txt
 echo ------------------------
-rm ./exec_orig ./output_orig.txt 
 # Compile the modified function test
 gcc -Wall -Werror -Wextra -o exec_mod "$MAIN_FILE_MODIFIED" ${lib_name} 2> error_mod.txt
 if [ $? -ne 0 ]; then
@@ -57,6 +56,7 @@ if [ $? -ne 0 ]; then
 		echo "Error: Compilation of $BASE_FUNCTION_NAME failed."
 	fi
 	rm -f error_mod.txt
+	rm ./exec_orig ./output_orig.txt 
 	rm -f $MAIN_FILE_MODIFIED
 	exit 1
 fi
