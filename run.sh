@@ -44,7 +44,7 @@ fi
 
 echo ------------------------
 ./exec_orig > output_orig.txt
-echo "$prefix$BASE_FUNCTION_NAME's output "
+echo "## $prefix$BASE_FUNCTION_NAME's output ##"
 cat output_orig.txt
 echo ------------------------
 # Compile the modified function test
@@ -62,7 +62,7 @@ rm -f error_mod.txt
 
 # Run both executables and save their outputs
 ./exec_mod > output_mod.txt
-echo "$BASE_FUNCTION_NAME's output "
+echo "## $BASE_FUNCTION_NAME's output ##"
 cat output_mod.txt
 echo ------------------------
 
