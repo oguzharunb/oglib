@@ -8,14 +8,15 @@ void    *og_memccpy(void *dest, const void *src, int c, size_t n)
 
 	temp1 = (unsigned char *)src;
 	temp2 = (unsigned char *)dest;
-
-	for (i = 0; i < n; i++)
+	i = 0;
+	while (i < n) 
 	{
  		temp2[i] = temp1[i];
 		if (temp1[i] == (unsigned char)c)
 		{
 			return (temp2 + i + 1);
 		}
+		i++;
 	}
-	return NULL;
+	return (NULL);
 }
