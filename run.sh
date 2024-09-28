@@ -57,6 +57,7 @@ if [ $? -ne 0 ]; then
 		echo "Error: Compilation of $BASE_FUNCTION_NAME failed."
 	fi
 	rm -f error_mod.txt
+	rm -f $MAIN_FILE_MODIFIED
 	exit 1
 fi
 rm -f error_mod.txt
