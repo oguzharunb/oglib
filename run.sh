@@ -42,19 +42,25 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# Compile the modified function test
-gcc -Wall -Werror -Wextra -o exec_mod "$MAIN_FILE_MODIFIED" ${lib_name} 
-if [ $? -ne 0 ]; then
-    echo "Error: Compilation of $BASE_FUNCTION_NAME failed."
-    exit 1
-fi
-
-# Run both executables and save their outputs
 echo ------------------------
 ./exec_orig > output_orig.txt
 echo "$prefix$BASE_FUNCTION_NAME's output "
 cat output_orig.txt
 echo ------------------------
+# Compile the modified function test
+gcc -Wall -Werror -Wextra -o exec_mod "$MAIN_FILE_MODIFIED" ${lib_name} 2> error_mod.txt
+if [ $? -ne 0 ]; then
+	if grep -q "implicit declaration" error_mod.txt; then
+	echo "Error: There is no function named '${BASE_FUNCTION_NAME}' in the standard C library."
+	else
+		echo "Error: Compilation of $BASE_FUNCTION_NAME failed."
+	fi
+	exit 1
+	rm -f error_mod.txt
+fi
+rm -f error_mod.txt
+
+# Run both executables and save their outputs
 ./exec_mod > output_mod.txt
 echo "$BASE_FUNCTION_NAME's output "
 cat output_mod.txt
