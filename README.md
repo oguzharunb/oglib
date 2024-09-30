@@ -1,7 +1,7 @@
 
 # Custom C Library Implementation
 
-This repository contains implementations of various C standard library functions (prefixed with `og_`), along with scripts and a Makefile to compile and test them against their standard counterparts.
+This repository contains implementations of various C standard library functions including `write` and `read`(prefixed with `og_`), along with scripts and a Makefile to compile and test them against their standard counterparts.
 
 ## Files and Structure
 
