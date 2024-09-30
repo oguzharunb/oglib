@@ -23,7 +23,7 @@ $(NAME): $(HEADER) $(OBJ)
 	@echo "***Compiling $<***"
 	$(GCC) $(FLAGS) -c $< -o $@
 
-$(HEADER): $(SRC) $(HEADER_PROT)
+$(HEADER): $(CONFIG) $(SRC) $(HEADER_PROT)
 	@echo "***Generating $(HEADER) from $(HEADER_PROT)***"
 	cp $(HEADER_PROT) $(HEADER)
 	$(PROTOTYPE_PLACER) $(HEADER) $(SRC)
