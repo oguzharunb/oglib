@@ -22,7 +22,7 @@ This repository contains implementations of various C standard library functions
 ## How to Use
 
 ### Compilation
-To compile the custom library and generate `oglib.a`, run the following command:
+To compile the custom library and generate `oglib.a` and `oglib.h`, run the following command:
 
 ```bash
 make
