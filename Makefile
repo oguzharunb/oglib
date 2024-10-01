@@ -1,6 +1,6 @@
 CONFIG = config.json
 GCC = cc
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra -Wuninitialized
 NAME = $(shell jq -r '.lib_name' '${CONFIG}')
 HEADER = $(shell jq -r '.header_name' '${CONFIG}') 
 HEADER_PROT = prototype.h
