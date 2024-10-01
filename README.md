@@ -32,7 +32,7 @@ make
 To use the library in your project:
 
 ```bash
-(c-compiler) (flags) (your object files) ~/path_to/oglib.a -I ~/path_to/oglib.h
+gcc -Wall -Wextra -Werror file1.o file2.o ~/path_to/oglib.a -I ~/path_to/oglib.h
 ```
 
 ### Running Tests
