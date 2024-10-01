@@ -28,6 +28,13 @@ To compile the custom library and generate `oglib.a` and `oglib.h`, run the foll
 make
 ```
 
+### In Your Project
+To use the library in your project:
+
+```bash
+(c-compiler) (flags) (your object files) ~/path_to/oglib.a -I ~/path_to/oglib.h
+```
+
 ### Running Tests
 To test the custom functions, you can use the provided `run.sh` script. For example, to test the `og_memset` function, run:
 
