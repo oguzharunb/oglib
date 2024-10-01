@@ -35,13 +35,6 @@ To test the custom functions, you can use the provided `run.sh` script. For exam
 ./run.sh og_memset
 ```
 
-### In Your Project
-To use the library in your project:
-
-```bash
-gcc -Wall -Wextra -Werror file1.o file2.o ~/path_to/oglib.a -I ~/path_to/oglib.h
-```
-
 This script:
 1. Replaces instances of the custom function (`og_{function_name}`) with the standard one (`{function_name}`).
 2. Compiles the original and modified tests.
