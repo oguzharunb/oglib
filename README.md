@@ -42,7 +42,7 @@ This script:
 4. If the function is not in Standard C Library it will just compile the one in custom library.
 
 ### Cleaning Up
-To clean up the object files and the library, run:
+To clean up the object files, run:
 
 ```bash
 make clean
