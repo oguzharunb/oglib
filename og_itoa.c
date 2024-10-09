@@ -1,45 +1,41 @@
-#include "oglib.h"
+#include <stdlib.h>
 
-char	*og_itoa(int n)
+static size_t	get_digits(int n)
 {
-	size_t	size;
-	char	neg;
-	int	temp_n;
-	char	*new;	
-	int	i;
+	size_t	i;
 
-	if (n == -2147483648)
-	{
-		new = og_strdup("-2147483648");
-		if(!new)
-			return (NULL);
-		return (new);
-	}
-	neg = 0;
-	size = 0;
-
-	if(n < 0)
-	{
-		size++;
-		n = -n;
-		neg = 1;
-	}
-	temp_n = n;
-	while(temp_n)
-	{
-		size++;
-		temp_n /= 10;
-	}
-	new = (char *)malloc(sizeof(char) * (size + 1));
-	new[size] = '\0';
-	if (neg)
-		*new = '-';
 	i = 0;
-	while(n)
+	while (n)
 	{
-		new[size - i - 1] = '0' + (n % 10);
 		n /= 10;
 		i++;
 	}
-	return (new);
+	return (i);
+}
+
+char	*og_itoa(int n)
+{
+	char		*str_num;
+	size_t		digits;
+	long int	num;
+
+	num = n;
+	digits = get_digits(n);
+	if (n < 0)
+	{
+		num *= -1;
+		digits++;
+	}
+	str_num = (char *)malloc(sizeof(char) * (digits + 1));
+	if (!str_num)
+		return (NULL);
+	*(str_num + digits) = 0;
+	while (digits--)
+	{
+		*(str_num + digits) = num % 10 + '0';
+		num /= 10;
+	}
+	if (n < 0)
+		*(str_num + 0) = '-';
+	return (str_num);
 }
